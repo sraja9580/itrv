@@ -1,0 +1,28 @@
+
+RequestDispatcher
+	RequestDispatcher rd=request.getRequestDispatcher("servlet2");  
+	//servlet2 is the url-pattern of the second servlet   
+	rd.forward(request, response);//method may be include or forward 
+	
+SingleThreadModel ?
+	hat no two threads will execute concurrently in the servlet’s service method
+	SingleThreadModel does not solve all thread-safety issues. For example, session attributes and static variables can still be 
+		accessed by multiple requests on multiple threads at the same time
+	interface is Deprecated in Servlet 2.4.
+	
+Are Servlets Thread Safe? How to achieve thread-safety in servlets?
+	int & destroy yes
+	do get and do post not
+	
+What is URL Encoding?
+	URL Encoding is the process of converting data into CGI form so that it can travel across the network without any issues. 
+	URL Encoding strips the white spaces and replaces special characters with escape characters. 
+	We can use java.net.URLEncoder.encode(String str, String unicode) to encode a String. 
+	URL Decoding is the reverse process of encoding and we can use java.net.URLDecoder.decode(String str, String unicode) 
+			to decode the encoded string. For example “Pankaj’s Data” is encoded to “Pankaj%27s+Data”.
+			
+https://www.journaldev.com/1945/servletcontextlistener-servlet-listener-example
+https://www.journaldev.com/1973/servlet-exception-and-error-handling-example-tutorial
+https://www.journaldev.com/2008/async-servlet-example
+https://www.javatpoint.com/url-rewriting-in-session-tracking
+

@@ -1,0 +1,122 @@
+Angular
+https://dzone.com/articles/50-top-angular-interview-questions-amp-answers
+https://www.interviewbit.com/angular-interview-questions/
+1. JavaScript vs TypeScript (Typing and interface)
+
+Why node is needed?
+	https://www.quora.com/Why-does-Angular-2-need-Node-js
+	Angular does not need node.js directly. Node js is used for all the build and development tools.
+	Angular is a framework and you may use typescript programming language to program us. 
+	Typescript is the most popular choice.
+	A web browser such as Chrome, Firefox or Internet Explorer understands only Javascript so we have to transpile our Typescript to Javascript
+	and for that we use typescript transpiler which requires NodeJS. 
+https://www.c-sharpcorner.com/forums/why-do-we-need-nodejs-for-angular-application
+	
+tsconfig.json
+package.json
+
+DI 
+	DI in angular
+	constructor(private router:Router)
+	
+Bootstrapping Angular App
+	Root Module -> Root Component
+	Main.ts -> Bootstrap Root Module(AppModule by default)
+	RootModule(AppModule) -> Bootstrap Root component(App component)
+	index.html -> <app-root></app-root>
+	
+What are components?
+@Component (decorator){
+	selector
+	style
+	template
+}
+template(component.html) , style(components.css), typescript(component.ts)
+
+Data Binding:
+	event Binding
+	String interpolation (1 way)
+	Banana in box[(ngModel)] - ngMode (FormsModule)
+	
+Routing:
+	add route in route module
+	<router-outlet> in app.com.html
+	
+	component
+		this.router.navigate(['welcome'])
+		
+	href vs RouterLink
+	
+	Routing with parameter
+	-----------------------
+	Type 1:
+	we are going to display login userName in welcome page
+	1.Update route with param
+		 app-routing.module.ts
+		{path:'welcome/:name',component:WelcomeComponent}
+	2. pass the userName from login.ts on routing
+		 this.router.navigate(['welcome',this.userName]);
+	2. welcome.ts
+		1. define name field in welcome.ts to us in welcome html
+		2. declare ActivatedRoute as dependency in welcome.ts
+		3. oninit method get the param and using ActivatedRoute and set it in name field
+			export class WelcomeComponent implements OnInit {
+			  loggedInUser
+			  constructor(private route:ActivatedRoute) { }
+			  ngOnInit() {
+				this.loggedInUser = this.route.snapshot.params['name'];
+			  }
+			}
+    4. display userName in html using string interpolation
+		welcome{{userName}}
+	
+	Type 2:
+	-------
+	********Above step 1,2,3,4 will work only if request comes from different component
+	In some scenario we will reload same page with different parameter in that scenario we have to use 	this.route.param to read variable
+	**snapshot only work during component initialization
+	
+	Scenario
+		Server-Component -> localhost:4200/servers/1
+			server name:XXX
+			server id: 1
+			Click Here for Next Server(<a [routerLink]="['/servers',server.id+1]">Next Server</a>)
+			
+			here request is not coming from out side , it is from same page.
+			
+		TS code to read params 
+		----------------------
+		ngOnInit() {    
+			//FOR REQUEST FROM OUTSIDE
+			const serverId = Number(this.activatedRoute.snapshot.params['id'])
+			this.server = this.serversService.getServer(serverId);
+			
+			//FOR REQUEST FROM SAME PAGE(IT WILL NOT HAPPEN FIRST TIME ,SO WE HAVE TO LISTEN FOR CHANGE)
+			this.activatedRoute.params.subscribe(
+			  (params:Params)=>{
+				this.server = this.serversService.getServer(Number(params.id));        
+			  }
+			)
+		}
+	
+
+Decrators
+	@Component @NgModule @Injectable
+	
+Interface you have used in your project?
+CanActivate
+
+RouteGuardService implements CanActivate
+
+How will you access a service? (HttpClient)
+
+Obervable vs promise
+
+HttpInterceptor (intercept)
+
+Java
+----
+https://dzone.com/articles/top-20-java-interview-questions-with-answers
+
+
+Map/pipe/filter

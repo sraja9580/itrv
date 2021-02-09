@@ -1,0 +1,151 @@
+1. Spring
+	* Application Framework (DI)
+	* Programing and Configuration Model (lets you write business logic)
+	
+	Problems with Spring
+		
+		* Huge framework
+		* Multiple Setup steps
+		* Multiple Configuration Steps
+		* Multiple Build and Deploy Steps
+
+Spring modules
+	Core Container(has imp for IOC and support of DI) -> Core,Bean,context,ExL
+	DataAccess & Integration -> JDBC,ORM,Transaction,JMS
+	Web
+	Test
+	AOP
+	
+Life Cycle methods
+	init :: Instantiate -> Set values -> init()  (@PostConstruct on method)
+	Destroy :: before the object destroyed (@PreDestroy on method)
+	
+Bean Scope:
+	singleton (Default)
+	prototype -> object each request
+	
+	request -> per request
+	session -> per session
+
+
+2.  Stereotype annotation
+	@Component -> Generic
+	@Controller or @RestController (controller layer)
+	@Service -> Business layer
+	@Repository -> DAO
+	
+	@Scope -> used on class to define scope of the bean @Scope('prototype')
+	
+3. Spring Express Language
+	
+	@Value("#{expression}")
+	private String name
+	
+4. @Configuration
+	->config class
+	
+5. BeanConfig in XML and Java
+	
+	XML
+	---
+	<bean name="emp" class="com.raja.spring.core.Employee">
+    	<property name="id" value="20"/>
+    	<property name="name" value="RAJA SELVARAJ"/>
+    </bean>
+	
+	ApplicationContext context = new ClassPathXmlApplicationContext("springconfig.xml");
+	Employee emp= (Employee) context.getBean("emp");
+	System.out.println(emp.toString());
+	
+	Java
+	----
+	@Configuration
+	public class SpringConfig {		
+		@Bean(initMethod="init",destroyMethod="destroy")
+		public Service getService() {
+			return new Service();
+		}
+	}
+
+	AnnotationConfigApplicationContext appContext = new AnnotationConfigApplicationContext(SpringConfig.class);
+    Service service = (Service) appContext.getBean(Service.class);
+    service.save();
+	
+DispatcherServlet 
+	DispatcherServlet is the front controller in the Spring MVC application and it loads the spring bean configuration
+	file and initialize all the beans that are configured. If annotations are enabled, it also scans the packages and
+	configure any bean annotated with @Component,@Controller, @Repository or @Service annotations
+	
+ContextLoaderListener
+	ContextLoaderListener is the listener to start up and shut down Spring’s root WebApplicationContext. 
+	It’s important functions are to tie up the lifecycle of ApplicationContext to the lifecycle of the ServletContext and to automate
+	 the creation of ApplicationContext. We can use it to define shared beans that can be used across different spring contexts.
+
+													Aspect-Oriented Programming(AOP)
+													--------------------------------
+What is AOP?
+	In computing, aspect-oriented programming (AOP) is a programming paradigm that aims to increase modularity by allowing 
+	the separation of cross-cutting concerns. It does so by adding additional behavior to existing code (an advice) without
+	modifying the code itself, instead separately specifying which code is modified via a "pointcut" specification, 
+	such as "log all function calls when the function's name begins with 'set'". This allows behaviors that are not central
+	to the business logic (such as logging) to be added to a program without cluttering the code, core to the functionality. 
+	AOP forms a basis for aspect-oriented software development.
+	
+	AOP Frameworks
+		AspectJ
+		SpringAOP (Uses AspectJ annotations)
+		JBOSSAOP
+	
+AOP Terminology
+
+	Aspect 
+		Aspect is class which is having cross cutting(reusable) functionality like logging,transaction etc
+		
+	Advice
+		Advice is the actual implementation(methods in aspect) of an aspect i.e., it defines the job that an aspect will perform. 
+		Advice defines both what and when of an aspect
+		
+	Point Cut
+		Which are all the place(method) in target required advice.
+		AOP only method level plugging only
+		
+	Joint Point
+		combination of pointcuts and advice, tells which business method requires which advice
+		
+	Target
+		Target is an object which required advice (logging,transaction etc)
+		
+	Weaving
+		process of applying ADVICE to the TARGET based on JOINPOINTS
+		
+	Proxy
+		Class that generated as the result of weaving process.
+		It contains business logic method & advice logic method.
+	
+PointCut Sytax
+	AccessSpecifier ReturnType packageName.ClassName.MethodName(inputTypes)	
+		Ex public int com.raja.Token.getTokens(String)
+		
+	* wild-card all places except input type
+	.. can be used in input types,packages
+		Ex public int *.*.getTokens(..)
+		
+AspectJ Annotations(AOP uses AspectJ annotation)
+
+	@Aspect -> On class providing cross-cutting(reusable) functionality
+	@Before -> Before Method execution
+	@After -> After Method Execution
+	@AfterReturning -> 
+	@Around
+	@AfterThrowing
+	
+	Aspect Example
+	--------------
+	@Component
+	@Aspect
+	public class LoggingAspect {		
+		@Before("execution(* com.raja.spring.springaop.ProductServiceImpl.multiply(..))")
+		public void logBefore(JoinPoint joinPoint) {
+			System.out.println("Before method invocation");
+		}
+	}

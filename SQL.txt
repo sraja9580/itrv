@@ -1,0 +1,53 @@
+third maximum salary of an employee
+	SELECT TOP 1 salary FROM (  
+		SELECT TOP 3 salary  FROM employee_table  ORDER BY salary DESC ) 
+	AS emp ORDER BY salary ASC;    
+	
+ACID 
+	ACID is an acronym for Atomicity, Consistency, Isolation, Durability.
+	ACID property is used to ensure that the data transactions are processed reliably in a database system.
+	
+SQL Joins
+	https://www.w3schools.com/sql/sql_join_self.asp
+	
+Having vs WHERE
+	A WHERE clause is used is filter records from a result.  The filter occurs before any groupings are made.
+	A HAVING clause is used to filter values from a group.
+	
+	SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders
+	INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+	WHERE LastName = 'Davolio' OR LastName = 'Fuller'
+	GROUP BY LastName
+	HAVING COUNT(Orders.OrderID) > 25;
+	
+Index
+	https://www.youtube.com/watch?v=pBG_d3wMDN0&list=PL2WDxXzl0Y2Cz2YagDyZbC0TlAZ2huLiK&ab_channel=BertWagner
+	
+Clustered Index:
+	The clustered index is used to reorder the physical order of the table and search based on the key values. 
+	Each table can have only one clustered index. The Clustered index is the only index which has been automatically created '
+		when the primary key is generated.
+	If moderate data modification needed to be done in the table then clustered indexes are preferred.
+	
+Non-Clustered Index:
+	The reason to create non-clustered index is searching the data. We well know that clustered indexes are created 
+		automatically primary keys are generated, but non-clustered indexes are created when multiple joins conditions and
+		various filters are used in the query. Non-Clustered Index does not alter the physical order of the table and maintains 
+		logical order of data.
+		
+	Each table can have 999 non-clustered indexes.
+	
+Cluster vs Non Cluster index
+	https://www.youtube.com/watch?v=xeoLwQmTO4o&ab_channel=BertWagner
+	
+Which are the different character-manipulation functions in SQL?
+	CONCAT: join two or more values together.
+	SUBSTR: used to extract the string of specific length.
+	LENGTH: return the length of the string in numerical value.
+	INSTR: find the exact numeric position of a specified character.
+	LPAD: padding of the left-side character value for right-justified value.
+	RPAD: padding of right-side character value for left-justified value.
+	TRIM: remove all the defined character from the beginning, end or both beginning and end.
+	REPLACE: replace a specific sequence of character with other sequences of character.	
+	
+	

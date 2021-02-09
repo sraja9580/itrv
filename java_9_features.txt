@@ -1,0 +1,40 @@
+Java 9
+1. Jshell
+2. Modularity
+3. StreamAPI Enhancements
+4. Private Method in interface
+5. Factory Methods for Immutable List, Set, Map and Map.Entry
+
+Java 10
+	Local variable type inference
+	-----------------------------	
+		var list = new ArrayList<String>(); // infers ArrayList<String>
+		var stream = list.stream();         // infers Stream<String>
+		
+		List<Actor> actors =  List.of(new Actor()); // Pre Java 10 
+		var actors = List.of(new Actor()); // Java 10 onwards 
+	
+	Collector API Enhancements (unmodifiableList)
+	--------------------------
+	empList.stream().filter(emp.getName().contain("RA")).collect(Collectors.unmodifiableList);
+	
+	Heap Allocation on Alternative Memory Devices
+	---------------------------------------------
+	Applications have become memory hungry, there’s an increase in cloud-native applications, in-memory databases, streaming applications.
+	In order to cater to these services, there are various memory architectures available. This feature enhances the capability of
+	HotSpot VM to allocate the Java object heap on an alternative memory device, such as an NV-DIMM, specified by the user.
+
+	This JEP targets alternative memory devices that have the same semantics as DRAM, including the semantics of atomic operations
+	, and can, therefore, be used instead of DRAM for the object heap without any change to existing application code.
+
+Java 11
+	1. Running java class in single command
+		-- javac Exaple.java not required
+		-- java Exaple.java it implicitly compiles.
+		
+	2.  New utility method in String 
+		isBlank()
+		strip(),stripLeading(),stripTrail()
+		strip() -> removes Unicode empty space also which trim wont 
+		
+	3. File API update for read & write string

@@ -1,0 +1,29 @@
+
+Access Strategy
+---------------
+	@Access annotation
+	-> If you annotate @Id on primary key field then hibernate uses FIELS access, ie(it doesn't use setter methods)
+	-> If you annotate @Id on primary key getter method then hibernate uses PROPERY access, ie(it doesn't access field directly)
+	@Id
+	private Integer empId
+		->reflection to set values in object
+		
+	@Access(PROPERY) @Access(FILED)
+	------------------------------
+	We can change the access type particular filed by using @Access(PROPERY) @Access(FILED)
+	
+	@Access(AccessType.FIELD)
+    private int version;
+	
+	
+openSession() vs getCurrentSession()
+-----------------------------------
+	openSession() -> opens new session, explicit flush and close needed
+				  -> should be used in web application and multi threaded env
+	getCurrentSession() -> Managed by hibernate
+						-> should be used in single thread environment
+						
+get vs load
+	get  -> always hits database, returns null if not found
+	load -> reflection proxy, throws ObjectNotFoundException if not found , supports lazy loading
+		

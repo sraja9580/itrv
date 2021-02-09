@@ -1,0 +1,64 @@
+1. Functional Programing
+	Predicate -> test() -> returns boolean true or false
+	Functions -> apply() -> takes & return any types of values
+2. Lamda
+3. Stream API
+4. Default & Static methods in Interface
+
+Stream API
+----------
+Stream Intermediate And Terminal Operations :
+	-- intermediate return a stream terminal  return non-stream values like 
+		primitive or object or collection or may not return anything.
+
+	-- As intermediate operations return another stream as a result, they can be chained together to form a pipeline of operations.
+			Terminal operations can not be chained together.
+	-- Intermediate operations are lazily loaded. When you call intermediate operations, they are actually not executed. 
+		They are just stored in the memory and executed when the terminal operation is called on the stream.
+	intermediate: map(), filter(), distinct(), sorted(), limit(), skip()
+	terminal: forEach(), toArray(), reduce(), collect(), min(), max(), count(), anyMatch(), allMatch(), noneMatch(), findFirst(), findAny()
+
+Default & Static Methods in Interface
+-------------------------------------
+	-just need to add default as modifier to create default method in interface 
+		public interface A{ 
+			default int test(){ return 2;}
+		}
+	-default method are created to enable backward comparability
+	-Ex List is have new method has sort() default method, incase it is not default then all the implementation need to
+		override this new method
+	
+	Diamond problem with interface default methods
+	----------------------------------------------
+	Scenario 1: 
+		If two super interfaces define methods with the same signature, the compiler will issue an error. We have to resolve the 
+	conflict manually by implementing the method.
+		
+		interface DemoInterface1 {default void display() {System.out.println("the DemoInterface1");} }  
+		interface DemoInterface1 {default void display() {System.out.println("the DemoInterface2");} }  
+ 
+		public class DemoClass implements DemoInterface1, DemoInterface2  
+		{  
+			public void display()   
+			{  
+				DemoInterface1.super.display();  
+				DemoInterface2.super.display();  
+			}
+			
+			public static void main(String args[])   
+			{  	//If display() method not implanted it will throw error
+				DemoClass obj = new DemoClass();  
+				obj.display();  
+			}  
+		}  
+		
+	Scenario 2: (Third Rule)
+		If a base class and a base interface define methods with the same signature, the method definition in the class is used
+		and the interface definition is ignored.
+		
+ForEach method
+--------------
+	-- it is internal(jvm) loop, not like normal (for(int =o;i<5;i++))
+	-- looping logic is with java not in our program
+	-- it uses parallel processing in multi core environment if possible
+	-- empList.forEacch(emp->sysout(emp))

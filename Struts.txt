@@ -1,0 +1,73 @@
+http://technicalstack.com/struts-1-x-interview-questions-and-answers-1/
+
+Struts tags:  https://dzone.com/tutorials/java/struts/struts-example/struts-html-tag-example-1.html
+	HTML
+		<html:text name="feedbackForm" property="name" />
+		
+		  <html:radio name="feedbackForm" property="sex" value="M" > M </html:radio>
+          <html:radio name="feedbackForm" property="sex" value="F" > F </html:radio>
+		  
+	Logic
+		<logic:equal name="feedbackForm" property="sex" value="M"> Male </logic:equal>
+        <logic:equal name="feedbackForm" property="sex" value="F"> Female </logic:equal>
+		
+	Bean
+		 <bean:write name="feedbackForm" property="name" />
+		 
+https://flylib.com/books/en/1.249.1.29/1/
+
+Dispatch Action
+	https://www.viralpatel.net/struts-dispatch-action-tutorial-with-example-in-eclipse/
+	
+	<action path="/user" parameter="parameter" type="net.viralpatel.struts.helloworld.action.UserManagementAction">
+		<forward name="success" path="/UserSuccess.jsp" />
+		<forward name="failure" path="/UserSuccess.jsp" />
+	</action>
+
+	<html:link href="user.do?parameter=create">Create User</html:link>
+	
+Lookup Dispatch
+	https://dzone.com/tutorials/java/struts/struts-example/struts-lookup-dispatch-action-example-1.html
+	https://javawebtutor.com/articles/struts/struts_action.php
+	
+	Problem with DispatchAction:
+		Because of writing action class method name inside the Jsp Action classes will be tightly coupled in JSP’s i.e 
+	when action classes method name is changed JSP should be modified this gives you maintenance problems remaining same as 
+	action class.
+	
+	<action-mappings>
+    <action input="/index.jsp" parameter="method" name="UserForm" path="/UserAction" scope="session" type="com.vaannila.UserAction">
+        <forward name="success" path="/index.jsp" />
+    </action>
+	</action-mappings>
+	
+	ApplicationResource.properties
+	------------------------------
+	UserForm.add = Add
+	UserForm.update = Update
+	UserForm.delete = Delete
+	
+	UserAction.java
+	---------------
+	protected Map getKeyMethodMap() {
+		Map map = new HashMap();
+		map.put("UserForm.add", "add");
+		map.put("UserForm.update", "update");
+		map.put("UserForm.delete", "delete");
+		return map;
+	}
+	
+Mapping Dispatch Action: (different action mapping for each method in struts config file)
+	
+	This class functionality is similar to DispatchAction. But DispatchAction has the maintenance problem .to avoid that problem
+	LookupDispatchAction was introduced but LookupDispatchAction implementation is bit complicated 
+	(unnecessary you had to write many keys inside the property file and had to override get KeyMethodMap()
+	method in all the Action class.
+	To avoid the complication with LookupDispatchAction , MappingDispatchAction was introduced in Struts 1.2
+	
+	https://mkyong.com/struts/struts-mappingdispatchaction-example/
+	https://javawebtutor.com/articles/struts/struts_action.php
+	
+	
+Multiple Config files:
+	https://mkyong.com/struts/struts-multiple-configuration-files-example/

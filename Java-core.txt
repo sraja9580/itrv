@@ -1,0 +1,32 @@
+Ternary operator
+----------------
+	result = testStatement ? value1 : value2;
+	
+Fail Fast and Fail Safe iterators
+----------------------------------
+
+Blocking Queue
+--------------
+
+Synchronized Collection vs Concurrent Collection
+------------------------------------------------
+
+
+Few Concurrent Collections
+--------------------------
+	CopyOnWriteArrayList,ConcurrentHashMap,CopyOnWriteArraySet.
+	
+What is Collections Class?
+--------------------------
+	java.util.Collections is a utility class consists exclusively of static methods that operate on or return collections
+	This class contains methods for collection framework algorithms, such as binary search, sorting, shuffling, reverse, etc.
+
+https://www.journaldev.com/780/comparable-and-comparator-in-java-example
+https://www.journaldev.com/1663/java-generics-example-method-class-interface
+https://www.journaldev.com/1847/system-class-java-properties-out-println
+https://www.journaldev.com/3884/java-is-pass-by-value-and-not-pass-by-reference
+https://www.journaldev.com/996/java-inner-class
+https://www.journaldev.com/16928/java-string
+https://www.journaldev.com/1663/java-generics-example-method-class-interface
+https://www.journaldev.com/1289/copyonwritearraylist-java
+https://www.journaldev.com/1642/java-priority-queue-priorityqueue-example

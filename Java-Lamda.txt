@@ -1,0 +1,11 @@
+1. Lamda
+	1. Enables functional programing
+	2. Readable code in certain scenarios(avoids boiler plate coding)
+	3. Supports parallel processing
+	
+2. FunctionalInterfce
+	--A interface with only one abstract method
+	--@FunctionalInterfce annotation helps to mark interface as functional interface,it is NOT MANDATORY
+		(it helps us not to add additional abstract method by mistake)
+	--functional interface is the datatype of lamda expression
+	

@@ -1,0 +1,83 @@
+Spring
+	* Application Framework (DI)
+	* Programing and Configuration Model (lets you write business logic)
+	
+	Problems with Spring
+		
+		* Huge framework
+		* Multiple Setup steps
+		* Multiple Configuration Steps
+		* Multiple Build and Deploy Steps
+	
+Spring Boot
+	Spring boot makes it easy to create stand-alone, production grade spring based application that you can just run
+	
+	* Convention over configuration
+	* Opinionated default
+		ex: when we create MCV Project(Boot REST) it comes with default config for Dispatcher Servlet,but you can change it if you want
+	* Stand Alone (with spring we create war or ear which needs to app server)
+	* production ready
+	
+Spring Boot Starter Projects
+	helps to easily start building spring projects by managing dependencies
+	
+Bill of Materials 
+	Works with starter parent
+	BOM stands for Bill Of Materials. 
+	* list of combinations of jars that works well
+	A BOM is a special kind of POM that is used to control the versions of a project’s dependencies and provide a central place
+	to define and update those versions.
+	BOM provides the flexibility to add a dependency to our module without worrying about the version that we should depend on.
+
+Why Embedded Tomcat Server
+	Convenience
+	Servlet Container configuration is part of application(application.props)
+	Standalone application(Easy to develop,run,deploy)
+	
+Spring MVC in Boot project?
+	added to project -> with web starter
+		if the incoming url and http method is matched with any of the controller class then executes the method
+		convert the response to appropriate formate and sends(we return pojos boot converts into specific format)
+
+Using External Server with Spring Boot?
+	spring.main.web-application-type = none
+	Now you can use external tomcat or any other web servers
+	
+@SpringBootApplication
+	@Configuration -> configures bean
+	@ComponentScan 
+	@EnableAutoConfiguration
+	
+@RestController
+	@Controller
+	@ResponseBody -> converts the response into XML or JSON
+	
+Actuator
+--------
+	An actuator is a component of a machine that is responsible for moving and controlling a mechanism or system,
+	for example by opening a valve.
+	Spring Boot Actuator is helps us to control and manage our application
+	
+	enable by adding -> spring-boot-starter-actuator (/actuator,/health,/info)
+	
+	Expose All Endpoints
+		management.endpoint.web.exposure.include=*
+		
+	Expose only selected endpoints
+		management.endpoint.jmx.exposure.include=health,info,bean
+	
+Expose App specif endpoint in Actuator (Custom endpoint)	
+	->add @Component,@Endpoint on class level
+	->add @ReadOperation,@WriteOperation,@DeleteOpration to method
+	->the endpoint will be part of actuator now
+	
+Advantage of YAML over Property file
+	. better readability
+	. Supports List,Map
+	. perfect for hierarchical configuration data
+	
+	
+	
+HttpTrace in SpringBoot Actuator
+
+	create -> HttpTraceRepository bean
