@@ -1,3 +1,4 @@
+AEM 6.4
 
 Access Strategy
 ---------------

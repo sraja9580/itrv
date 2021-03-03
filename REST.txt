@@ -1,0 +1,139 @@
+AEM 6.4
+
+HTTP Hyper Text Transfer Protocol
+---------------------------------
+Hyper Text -> Structured form of text, that contains links (HyperLinks) to other text.
+HTML -> Common way to write Hyper Text
+
+SOAP VS REST
+------------
+	https://www.w3.org/TR/2000/NOTE-SOAP-20000508/
+	SOAP
+	----
+		-> SOAP is a lightweight protocol for exchange of information,It is an XML based protocol that consists of three parts
+			. A packaging model (the SOAP envelope)
+			. A serialization mechanism (the SOAP encoding rules)
+			. An RPC mechanism (the SOAP RPC representation)
+			
+		-> A SOAP message is an XML document that consists of a mandatory SOAP envelope, an optional SOAP header, and a mandatory SOAP body
+		->Mostly works in combination with HTTP protocol
+			<SOAP-ENV:Envelope
+				xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+				SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">				
+				<SOAP-ENV:Body>
+			   <m:GetLastTradePrice xmlns:m="Some-URI">
+				   <symbol>DIS</symbol>
+			   </m:GetLastTradePrice>
+				</SOAP-ENV:Body>
+			</SOAP-ENV:Envelope>
+			
+API (Application Programing Interface)
+--------------------------------------
+In general, when we speak about APIs, we are likely speaking about web APIs [APIs that are accessible over the Internet]. 
+This is not always the case though. APIs can be exposed through local files (such as a JAR file in a Java program)to allow
+two local applications to communicate with each other. This doesn’t require a network as the two applications are
+communicating within a single device.	
+
+REST API 
+--------
+	What is REST? (Representational state transfer)
+	-----------------------------------------------	
+	https://www.youtube.com/watch?v=HeXQ98sogs8&ab_channel=TutorialsPoint%28India%29Ltd.
+	rest resource based instead of action based
+		website : weatherapp.com/weatherLookup.do?zipcode=2563
+		rest	: weatherapp.com/zipcode/2563
+		
+	REST explanation with Example
+		Transfer -> Transfer of data to client
+		State -> current state of the resource in the server, ex milk price is now 32, tomorrow it might be 35
+		Representation -> JSON ,XML (client specifies the representation) 
+		-> TRANSFER current STATE of the resource in a REPRESENTATION client requested
+		-> Server holds the resource, just sent the representation(json) of the resource to the client
+		 
+	URL: product/1
+	{
+		"id":"1","productName":"milk","price":"32"
+	}
+	
+	6 Constraints of Rest
+	---------------------
+		https://www.youtube.com/watch?v=IvHMM0huDZk&ab_channel=Udacity
+		https://www.youtube.com/watch?v=JYNYv8jJQTE&ab_channel=TutorialsPoint%28India%29Ltd.
+		1. Client Server (separation of concern)
+		---------------------------------------
+		->REST Application should have client server architecture
+		-> They can evolve independently
+		->Client doesn't need to know business logic and data layer
+		->Service doesn't need to know about UI layer
+		
+		2. Stateless
+		------------
+		-> server contains no client state
+		-> Each request has enough context(info) to process the request
+			
+		3. Cache
+		--------
+		-> Cache constraints stated that response should catcheable,if possible
+		-> Every response should include whether a response can be cached or not (if yes validity also needed)
+		-> until the response expires client can get the data from cached
+		
+		4. Layered System
+		-----------------
+		->client can have access ot the endpoint that relies on other endpoints or Data Base etc, without having to know all the 
+			underlying implementation
+		
+		5. Uniform interface
+		--------------------
+			It is the main difference between REST & Non REST API
+			servers must not have different way of accessing data(for clients from different systems)
+				* Mobile or PC ,Linux or Windows the way of accessing service should be same
+			
+			4 elements of Uniform interface constraints
+			-------------------------------------------
+				-> identification of resource (typically by URI)
+				-> manipulation of resource through representation
+				-> self descriptive message for each request
+				-> HATEOAS (Hypermedia As the Engine of Application state)
+				
+		6. Code on Demand (optional)
+		----------------------------
+			-> sending the code(javascript) as response to client, so client can execute in its side
+			
+	Resource URI
+	------------
+		URI is resource based instead of action based
+		website : weatherapp.com/weatherLookup.do?zipcode=2563
+		rest	: weatherapp.com/zipcode/2563
+		
+	HATEOAS (Hypermedia(HyperText) As the Engine of Application state)
+	------------------------------------------------------------------
+		https://www.youtube.com/watch?v=NK3HNEwDXUk&ab_channel=JavaBrains
+		
+		When we visit a website we dont need guide, by using the links in the home page we will get what we want.
+		
+		-> HATEOAS says - provide links to related resources, so that client dont need any documentation(guide)
+		for message/1 instead of returning below
+		{
+		   "id":"1",
+		   "content":"Hello world",
+		   "author":"raja",
+		   "created":"20201125"
+		}
+		
+		return, so that client doesnt need to have any guide, or manually frame the URL
+		{
+		   "id":"1",
+		   "content":"Hello world",
+		   "author":"raja",
+		   "created":"20201125",
+		   "links":[
+			  {
+				 "href":"message/1/comments",
+				 "rel":"comments"
+			  },
+			  {
+				 "href":"message/1/likes",
+				 "rel":"likes"
+			  }
+		   ]
+		}

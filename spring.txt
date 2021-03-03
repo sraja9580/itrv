@@ -1,3 +1,5 @@
+AEM 6.4
+
 1. Spring
 	* Application Framework (DI)
 	* Programing and Configuration Model (lets you write business logic)
@@ -37,6 +39,9 @@ Bean Scope:
 	@Scope -> used on class to define scope of the bean @Scope('prototype')
 	
 3. Spring Express Language
+	
+	@Value("John")
+    private String firstName;
 	
 	@Value("#{expression}")
 	private String name
@@ -149,3 +154,12 @@ AspectJ Annotations(AOP uses AspectJ annotation)
 			System.out.println("Before method invocation");
 		}
 	}
+	
+DI
+--
+	-> Create instance of the Dependency outside the class
+	-> loose coupling
+	-> One of the implementation of IOC
+IOC
+---
+	-> One object should not create another object directly

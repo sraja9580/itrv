@@ -1,11 +1,14 @@
+AEM 6.4
+
 http://technicalstack.com/struts-1-x-interview-questions-and-answers-1/
 
 Struts tags:  https://dzone.com/tutorials/java/struts/struts-example/struts-html-tag-example-1.html
+	The Struts Taglib component provides a set of JSP custom tag libraries that help developers create interactive form-based applications
+	Using the Struts custom tag libraries, developers are able to interact with the framework without including Java code in the JSP pages.
 	HTML
-		<html:text name="feedbackForm" property="name" />
-		
-		  <html:radio name="feedbackForm" property="sex" value="M" > M </html:radio>
-          <html:radio name="feedbackForm" property="sex" value="F" > F </html:radio>
+		<html:text name="feedbackForm" property="name" />		
+		<html:radio name="feedbackForm" property="sex" value="M" > M </html:radio>
+        <html:radio name="feedbackForm" property="sex" value="F" > F </html:radio>
 		  
 	Logic
 		<logic:equal name="feedbackForm" property="sex" value="M"> Male </logic:equal>
@@ -17,6 +20,9 @@ Struts tags:  https://dzone.com/tutorials/java/struts/struts-example/struts-html
 https://flylib.com/books/en/1.249.1.29/1/
 
 Dispatch Action
+---------------
+	DispatchAction is one of the Struts built-in action that provides a mechanism that facilitates having a set of related functionality 
+	in a single action instead of creating separate independent actions for each function
 	https://www.viralpatel.net/struts-dispatch-action-tutorial-with-example-in-eclipse/
 	
 	<action path="/user" parameter="parameter" type="net.viralpatel.struts.helloworld.action.UserManagementAction">
@@ -71,3 +77,17 @@ Mapping Dispatch Action: (different action mapping for each method in struts con
 	
 Multiple Config files:
 	https://mkyong.com/struts/struts-multiple-configuration-files-example/
+	
+	
+https://studylib.net/doc/9379291/struts-config.xml-file
+
+Validation
+----------
+	validation-rules.xml
+	validation.xml
+	
+	
+		
+
+ 
+	

@@ -1,0 +1,43 @@
+AEM 6.4
+
+Design Patterns:
+----------------
+	Coupling -> loose coupling using interface
+	Encapsulation ->
+
+	Creational
+	----------
+		different ways to create object
+		
+	Factory -> hides object creation logic from client
+			-> The Factory pattern also known as Virtual Constructor
+			
+	Abstract Factory -> Factory of Factory
+	
+	Singleton 
+	
+	Prototype -> Returning clone of object
+	
+	Builder Design Pattern:
+		Building complex object step by step
+	
+	Structural patterns
+	-------------------
+		relationship between objects
+		
+		
+	Behavioral patterns
+	-------------------
+		interaction or communication between objects
+		Behavioral design patterns are concerned with algorithms and the assignment of responsibilities between objects.
+		behavioral design patterns are design patterns that identify common communication patterns among objects. By doing so, these patterns increase flexibility in carrying out communication.
+		
+		-> Template method design pattern.
+		Memento Design Pattern
+		----------------------
+			The Memento Design Pattern offers a solution to implement undoable actions
+			We can do this by saving the state of an object at a given instant and restoring it if the actions performed since need to be undone.
+		
+		Originator - Object whose state need to be saved.
+		Caretaker -  is the object triggering the save and restore of the state, which is called the Memento
+		Memento -    the object that is going to maintain the state of originator. Its just a POJO. It is replica class that holds info originator which need to be saved and restored.

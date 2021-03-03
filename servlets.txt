@@ -1,3 +1,4 @@
+AEM 6.4
 
 RequestDispatcher
 	RequestDispatcher rd=request.getRequestDispatcher("servlet2");  

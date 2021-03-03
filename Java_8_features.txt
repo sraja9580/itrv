@@ -1,5 +1,5 @@
 1. Functional Programing
-	Predicate -> test() -> returns boolean true or false
+	Predicate -> test()  -> returns boolean true or false
 	Functions -> apply() -> takes & return any types of values
 2. Lamda
 3. Stream API
@@ -8,9 +8,8 @@
 Stream API
 ----------
 Stream Intermediate And Terminal Operations :
-	-- intermediate return a stream terminal  return non-stream values like 
-		primitive or object or collection or may not return anything.
-
+	-- intermediate return a stream,terminal return non-stream values like(primitive or object or collection or maynot return anything.)
+	
 	-- As intermediate operations return another stream as a result, they can be chained together to form a pipeline of operations.
 			Terminal operations can not be chained together.
 	-- Intermediate operations are lazily loaded. When you call intermediate operations, they are actually not executed. 

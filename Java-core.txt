@@ -1,9 +1,45 @@
+AEM 6.4
+
+Immutable class
+---------------
+	make class final 
+	make fields private
+	No setter methods (so cant change value)
+	mark all the mutable fields final (so that value can be assigned only once)
+	initialize fields via constructor (by performing deep copy) 
+	return clone of the object instead of original
+
+Association (HAS-A)
+-------------------
+	Aggregation -> loose coupling one can exist without another
+				-> Driver has a car
+				-> public class Driver{
+					private Car car;
+					}
+	Composition -> One object cannot exist without another
+				-> Car has a engine
+				-> public class Car{
+					private Engine car;
+				   }
+				   
+Covariant Return Type
+---------------------
+	Return type of over ridden method can be same or subclass of parent method return type ( > java 5)
+	class A{  
+		A get(){return this;}  
+	}  
+  
+	class B1 extends A{  
+		B1 get(){return this;} 
+	} 
+	
 Ternary operator
 ----------------
 	result = testStatement ? value1 : value2;
 	
 Fail Fast and Fail Safe iterators
-----------------------------------
+---------------------------------
+	https://www.baeldung.com/java-fail-safe-vs-fail-fast-iterator
 
 Blocking Queue
 --------------
@@ -30,3 +66,88 @@ https://www.journaldev.com/16928/java-string
 https://www.journaldev.com/1663/java-generics-example-method-class-interface
 https://www.journaldev.com/1289/copyonwritearraylist-java
 https://www.journaldev.com/1642/java-priority-queue-priorityqueue-example
+
+
+
+Hashcode & Equals
+-----------------
+	-> if two objects are equal then hashcode should be also equal
+	-> if hashcode is same it doesnt means they are same object
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null || getClass() != obj.getClass())
+			return false;
+		
+		DataKey other = (DataKey) obj;
+		if (id != other.id)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+	
+Generics
+--------
+	-> provide compile-time type checking and removing risk of ClassCastException that was common while working with collection 
+		classes. The whole collection framework was re-written to use generics for type-safety.
+		
+		Below code throws ClassCastException
+		------------------------------------
+		List list = new ArrayList();
+		list.add("abc");
+		list.add(new Integer(5)); //OK
+
+		for(Object obj : list){
+			//type casting leading to ClassCastException at runtime
+			String str=(String) obj; 
+		}
+		
+		
+		With Generics
+		-------------
+		List<String> list1 = new ArrayList<>(); 
+		list1.add("abc");
+		//list1.add(new Integer(5)); //compiler error
+
+		for(String str : list1){
+			 //no type casting needed, avoids ClassCastException
+		}
+
+		Java Generic Interface
+		----------------------
+		Comparable interface is a great example of Generics in interfaces and it’s written as:
+		public interface Comparable<T> { public int compareTo(T o);}
+		
+		Generic Types
+		-------------
+			E – Element (used extensively by the Java Collections Framework, for example ArrayList, Set etc.)
+			K – Key (Used in Map)
+			N – Number
+			T – Type
+			V – Value (Used in Map)
+			S,U,V etc. – 2nd, 3rd, 4th types
+			
+		Generic Type vs Generic Method
+		------------------------------
+		You should use a generic type when you expect that most of the methods, in the implementations, will perform operations 
+			on the type supplied when instantiating the class.
+
+		For example, ArrayList<E> is a generic type since most of its operations (add, get, remove etc.) rely on the type 
+			specified upon creation of one.
+			
+		A generic method should be used when only a few methods in the class rely upon the different types.
+
